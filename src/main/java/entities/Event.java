@@ -3,6 +3,8 @@ package entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -11,7 +13,7 @@ public abstract class Event {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    private UUID id;
+    protected UUID id;
 
     @Column(name = "titolo", nullable = false)
     private String title;
@@ -28,6 +30,10 @@ public abstract class Event {
 
     @Column(name = "max_partecipanti", nullable = false)
     private int maxParticipants;
+
+    @OneToMany(mappedBy = "event")
+    private List<Participation> participations = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;

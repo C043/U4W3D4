@@ -8,8 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.UUID;
-
 public class App {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("U4W3D4");
 
@@ -20,9 +18,6 @@ public class App {
         LocationsDAO ld = new LocationsDAO(em);
         ParticipationDAO pd = new ParticipationDAO(em);
         PersonDAO ped = new PersonDAO(em);
-
-
-        System.out.println(pd.findById(UUID.fromString("a1cbfdd2-b13d-4ce8-b57a-dc9284b33f6e")).getPerson());
 
         /*try {
             System.out.println(ed.getEventById(poveroPiero.getId()));

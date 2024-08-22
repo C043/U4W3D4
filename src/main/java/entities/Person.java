@@ -3,9 +3,7 @@ package entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "persone")
@@ -32,6 +30,12 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private List<Participation> participations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "vincitore")
+    private List<GaraAtletica> gareAtleticaVinte = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "atleti")
+    private Set<GaraAtletica> gare = new HashSet<>();
 
     public Person() {
 

@@ -12,11 +12,11 @@ public class Participation {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id")
+    @JoinColumn(name = "persona_id", nullable = false)
     private Person person;
 
     @ManyToOne
-    @JoinColumn(name = "evento_id")
+    @JoinColumn(name = "evento_id", nullable = false)
     private Event event;
 
     @Column(name = "stato_conferma")
