@@ -1,10 +1,13 @@
 package dao;
 
+import entities.Concerto;
 import entities.Event;
+import entities.GeneriMusicali;
 import exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
 import java.util.UUID;
 
 public class EventsDAO {
@@ -46,5 +49,13 @@ public class EventsDAO {
         transaction.commit();
 
         System.out.println("Evento " + found.getTitle() + " eliminato con successo.");
+    }
+
+    public List<Concerto> getConcertiInStreaming(boolean bool) {
+        return em.createQuery("SELECT c FROM Concerto c WHERE c.inStreaming = :bool", Concerto.class).setParameter("bool", bool).getResultList();
+    }
+
+    public List<Concerto> getConcertiPerGenere(GeneriMusicali genere) {
+        return em.createQuery("SELECT c FROM Concert c WHERE c.genere = :genere", Concerto.class).setParameter("genere", genere).getResultList();
     }
 }
