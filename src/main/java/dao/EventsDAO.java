@@ -76,4 +76,8 @@ public class EventsDAO {
     public List<GaraAtletica> getGareDiAtleticaPerPartecipante(Person partecipante) {
         return em.createQuery("SELECT g FROM GaraAtletica g JOIN g.atleti a WHERE a = :partecipante", GaraAtletica.class).setParameter("partecipante", partecipante).getResultList();
     }
+
+    public List<Event> getEventiSoldOut() {
+        return em.createQuery("SELECT e FROM Event e", Event.class).getResultList();
+    }
 }

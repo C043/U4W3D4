@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
+
 public class App {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("U4W3D4");
 
@@ -18,6 +20,16 @@ public class App {
         LocationsDAO ld = new LocationsDAO(em);
         ParticipationDAO pd = new ParticipationDAO(em);
         PersonDAO ped = new PersonDAO(em);
+
+        /* ed.getEventiSoldOut().forEach(System.out::println);*/
+
+        Location stadio = new Location("Stadio", "Milano");
+        Person aldo = new Person("Aldo", "Baglio", "aldo.baglio@gmail.com", LocalDate.of(1990, 3, 4), Genres.MASCHIO);
+        ld.save(stadio);
+        Event concerto = new Concerto("Nitro", LocalDate.now(), "Una bomba", EventType.PUBBLICO, 1, stadio, GeneriMusicali.ROCK, false);
+        ed.save(concerto);
+        ped.save(aldo);
+        pd.save(new Participation(aldo, concerto, ParticipationState.CONFERMATA));
 
         /*try {
             System.out.println(ed.getEventById(poveroPiero.getId()));

@@ -25,9 +25,9 @@ public abstract class Event {
     @Column(name = "descrizione_evento", nullable = false)
     private String eventDescription;
 
-    @Column(insertable = false, updatable = false, name = "tipo_evento", nullable = false)
+    @Column(insertable = false, updatable = false, name = "privacy_evento", nullable = false)
     @Enumerated(EnumType.STRING)
-    private EventType eventType;
+    private EventType eventPrivacy;
 
     @Column(name = "max_partecipanti", nullable = false)
     private int maxParticipants;
@@ -46,7 +46,7 @@ public abstract class Event {
         this.title = title;
         this.eventDate = eventDate;
         this.eventDescription = eventDescription;
-        this.eventType = eventType;
+        this.eventPrivacy = eventType;
         this.maxParticipants = maxParticipants;
         this.location = location;
     }
@@ -88,11 +88,11 @@ public abstract class Event {
     }
 
     public EventType getEventType() {
-        return eventType;
+        return eventPrivacy;
     }
 
     public void setEventType(EventType eventType) {
-        this.eventType = eventType;
+        this.eventPrivacy = eventType;
     }
 
     public int getMaxParticipants() {
@@ -110,7 +110,7 @@ public abstract class Event {
                 ", title='" + title + '\'' +
                 ", eventDate=" + eventDate +
                 ", eventDescription='" + eventDescription + '\'' +
-                ", eventType=" + eventType +
+                ", eventType=" + eventPrivacy +
                 ", maxParticipants=" + maxParticipants +
                 '}';
     }
