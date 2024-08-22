@@ -1,9 +1,6 @@
 package dao;
 
-import entities.Concerto;
-import entities.Event;
-import entities.GeneriMusicali;
-import entities.PartitaCalcio;
+import entities.*;
 import exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -66,5 +63,17 @@ public class EventsDAO {
 
     public List<PartitaCalcio> getPartiteVinteInTrasferta() {
         return em.createNamedQuery("getPartiteVinteInTrasferta", PartitaCalcio.class).getResultList();
+    }
+
+    public List<PartitaCalcio> getPartitePareggiate() {
+        return em.createQuery("SELECT p FROM PartitaCalcio p WHERE p.golSquadraCasa = p.golSquadraOspite", PartitaCalcio.class).getResultList();
+    }
+
+    public List<GaraAtletica> getGareDiAtleticaPerVincitore(Person vincitore) {
+        return em.createQuery("SELECT g FROM GaraAtletica g WHERE g.vincitore = :vincitore", GaraAtletica.class).setParameter("vincitore", vincitore).getResultList();
+    }
+
+    public List<GaraAtletica> getGareDiAtleticaPerPartecipante(Person partecipante) {
+        return em.createQuery("SELECT g FROM GaraAtletica g JOIN g.atleti a WHERE a = :partecipante", GaraAtletica.class).setParameter("partecipante", partecipante).getResultList();
     }
 }
