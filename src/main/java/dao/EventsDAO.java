@@ -3,6 +3,7 @@ package dao;
 import entities.Concerto;
 import entities.Event;
 import entities.GeneriMusicali;
+import entities.PartitaCalcio;
 import exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -57,5 +58,13 @@ public class EventsDAO {
 
     public List<Concerto> getConcertiPerGenere(GeneriMusicali genere) {
         return em.createQuery("SELECT c FROM Concert c WHERE c.genere = :genere", Concerto.class).setParameter("genere", genere).getResultList();
+    }
+
+    public List<PartitaCalcio> getPartiteVinteInCasa() {
+        return em.createNamedQuery("getPartiteVinteInCasa", PartitaCalcio.class).getResultList();
+    }
+
+    public List<PartitaCalcio> getPartiteVinteInTrasferta() {
+        return em.createNamedQuery("getPartiteVinteInTrasferta", PartitaCalcio.class).getResultList();
     }
 }
