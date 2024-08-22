@@ -1,13 +1,14 @@
 package entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "partite_calcio")
+@DiscriminatorValue("Calcio")
+@NamedQuery(name = "getPartiteVinteInCasa", query = "SELECT p FROM PartitaCalcio p WHERE p.golSquadraCasa > p.golSquadraOspite")
+@NamedQuery(name = "getPartiteVinteInTrasferta", query = "SELECT p FROM PartitaCalcio p WHERE p.golSquadraOspite > p.golSquadraCasa")
 public class PartitaCalcio extends Event {
     @Column(name = "squadra_casa", nullable = false)
     private String squadraCasa;

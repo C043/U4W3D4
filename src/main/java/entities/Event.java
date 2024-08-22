@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo_evento")
 public abstract class Event {
     @Id
     @GeneratedValue
@@ -24,7 +25,7 @@ public abstract class Event {
     @Column(name = "descrizione_evento", nullable = false)
     private String eventDescription;
 
-    @Column(name = "tipo_evento", nullable = false)
+    @Column(insertable = false, updatable = false, name = "tipo_evento", nullable = false)
     @Enumerated(EnumType.STRING)
     private EventType eventType;
 

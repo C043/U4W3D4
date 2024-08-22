@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "concerti")
+@DiscriminatorValue("Concerto")
 public class Concerto extends Event {
     @Column(name = "genere", nullable = false)
     @Enumerated(EnumType.STRING)

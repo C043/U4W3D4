@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "gare_atletica")
+@DiscriminatorValue("Gara_atletica")
 public class GaraAtletica extends Event {
     @ManyToOne
     @JoinColumn(name = "vincitore_id")
